@@ -2697,7 +2697,125 @@
       "required": false,
       "types": [
         {
+          "type": "macro_definition_body",
+          "named": true
+        },
+        {
+          "type": "macro_definition_parameters",
+          "named": true
+        },
+        {
           "type": "macro_rule",
+          "named": true
+        },
+        {
+          "type": "visibility_modifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_definition_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_literal",
+          "named": true
+        },
+        {
+          "type": "crate",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "metavariable",
+          "named": true
+        },
+        {
+          "type": "mutable_specifier",
+          "named": true
+        },
+        {
+          "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "super",
+          "named": true
+        },
+        {
+          "type": "token_repetition",
+          "named": true
+        },
+        {
+          "type": "token_tree",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "macro_definition_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "_literal",
+          "named": true
+        },
+        {
+          "type": "crate",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "metavariable",
+          "named": true
+        },
+        {
+          "type": "mutable_specifier",
+          "named": true
+        },
+        {
+          "type": "primitive_type",
+          "named": true
+        },
+        {
+          "type": "self",
+          "named": true
+        },
+        {
+          "type": "super",
+          "named": true
+        },
+        {
+          "type": "token_binding_pattern",
+          "named": true
+        },
+        {
+          "type": "token_repetition_pattern",
+          "named": true
+        },
+        {
+          "type": "token_tree_pattern",
           "named": true
         }
       ]
@@ -5233,6 +5351,10 @@
   },
   {
     "type": "loop",
+    "named": false
+  },
+  {
+    "type": "macro",
     "named": false
   },
   {

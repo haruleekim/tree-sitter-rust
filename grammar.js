@@ -160,24 +160,44 @@ module.exports = grammar({
     // Section - Macro definitions
 
     macro_definition: $ => {
-      const rules = seq(
-        repeat(seq($.macro_rule, ';')),
+      const name = field('name', choice(
+        $.identifier,
+        $._reserved_identifier,
+      ));
+
+      const rules = (/** @type {','|';'} */ delimeter) => seq(
+        repeat(seq($.macro_rule, delimeter)),
         optional($.macro_rule),
       );
 
-      return seq(
-        'macro_rules!',
-        field('name', choice(
-          $.identifier,
-          $._reserved_identifier,
-        )),
-        choice(
-          seq('(', rules, ')', ';'),
-          seq('[', rules, ']', ';'),
-          seq('{', rules, '}'),
+      return choice(
+        seq(
+          optional($.visibility_modifier),
+          'macro',
+          name,
+          choice(
+            seq(
+              $.macro_definition_parameters,
+              $.macro_definition_body,
+            ),
+            seq('{', rules(','), '}'),
+          ),
+        ),
+        seq(
+          'macro_rules!',
+          name,
+          choice(
+            seq('(', rules(';'), ')', ';'),
+            seq('[', rules(';'), ']', ';'),
+            seq('{', rules(';'), '}'),
+          ),
         ),
       );
     },
+
+    macro_definition_parameters: $ => seq('(', repeat($._token_pattern), ')'),
+
+    macro_definition_body: $ => seq('{', repeat($._tokens), '}'),
 
     macro_rule: $ => seq(
       field('left', $.token_tree_pattern),
